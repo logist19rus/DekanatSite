@@ -1,0 +1,65 @@
+﻿@model Week
+@{
+    string datesDiap = Week.dateString;
+    List<string> times = new List<string>()
+    {
+        "8:30-10:05","10:15-11:50","12:25-14:00","14:10-15:45","16:00-17:35","17:40-19:15"
+    };
+    ViewData["Title"] = "Home Page";
+}
+<div class="tt_menu">
+    <div class="week_selector">
+        <svg class="arrow" version="1.1" id="arrow_left" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+             y="0px" width="123.964px" height="123.964px" viewBox="0 0 123.964 123.964"
+             style="enable-background:new 0 0 123.964 123.964;" xml:space="preserve">
+        <g>
+        <path d="M121.7,57.681L83,26.881c-4-3.1-10-0.3-10,4.8v10.3c0,3.3-2.2,6.2-5.5,6.2H6c-3.3,0-6,2.4-6,5.8v16.2c0,3.2,2.7,6,6,6h61.5
+                		c3.3,0,5.5,2.601,5.5,5.9v10.3c0,5,6,7.8,9.9,4.7l38.6-30C124.7,64.781,124.8,60.081,121.7,57.681z" />
+
+
+
+                        </g>
+                    </svg>
+        <div class="week_date">
+            @Html.Raw(datesDiap)
+        </div>
+        <svg class="arrow" version="1.1" id="arrow_right" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+             y="0px" width="123.964px" height="123.964px" viewBox="0 0 123.964 123.964"
+             style="enable-background:new 0 0 123.964 123.964;" xml:space="preserve">
+        <g>
+        <path d="M121.7,57.681L83,26.881c-4-3.1-10-0.3-10,4.8v10.3c0,3.3-2.2,6.2-5.5,6.2H6c-3.3,0-6,2.4-6,5.8v16.2c0,3.2,2.7,6,6,6h61.5
+                		c3.3,0,5.5,2.601,5.5,5.9v10.3c0,5,6,7.8,9.9,4.7l38.6-30C124.7,64.781,124.8,60.081,121.7,57.681z" />
+
+
+
+                        </g>
+                    </svg>
+    </div>
+</div>
+<div class="time_table">
+    <div class="cell"> </div>
+    <div class="cell day">Понедельник</div>
+    <div class="cell day">Вторник</div>
+    <div class="cell day">Среда</div>
+    <div class="cell day">Четверг</div>
+    <div class="cell day">Пятница</div>
+    <div class="cell day">Суббота</div>
+    <div class="cell day">Воскресенье</div>
+
+    @for (int i = 0; i < 6; i++)
+    {
+        <div class="cell time">
+            @Html.Raw(times[i])
+        </div>
+        @for (int j = 0; j < 7; j++)
+        {
+            var nowLecture = Model.days[j].lectures[i];
+            <div class="cell @if (nowLecture != null && nowLecture.isDoule) @Html.Raw("sub") ">
+                @if (nowLecture != null)
+                {
+                    @Html.Raw(nowLecture.getStr());
+                }
+            </div>
+        }
+    }
+</div>

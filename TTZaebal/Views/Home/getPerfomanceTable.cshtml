@@ -1,0 +1,7 @@
+﻿@model perfomanceClass
+@{
+    string tbl = Model.getPerfTable();
+    ViewData["Title"] = "getPerfomanceTable";
+}
+
+@Html.Raw(tbl)

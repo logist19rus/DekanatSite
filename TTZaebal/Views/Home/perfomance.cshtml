@@ -1,0 +1,19 @@
+﻿@model perfomanceSelector
+@{
+    string yearSel = Model.getYearSel();
+    ViewData["Title"] = "perfomance";
+}
+    <div class="group_selector">
+        <select id="year">
+            <option selected="" disabled="" value="null">Год сессии</option>
+            @Html.Raw(yearSel)
+        </select>
+        <select id="session">
+            <option selected="" disabled="" value="null">Выберете сессию</option>
+            <option value="Зимняя">Зимняя</option>
+            <option value="Летняя">Летняя</option>
+        </select>
+        <button id="ToformButton" type="button">Сформировать</button>
+    </div>
+<div id="content"></div>
+
